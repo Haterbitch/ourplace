@@ -1,0 +1,39 @@
+:root{
+    --max-width: 1100px;
+    --gutter: 16px;
+    --accent: #1a73e8;
+    --bg: #f7f8fb;
+    --text: #222;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-family: system-ui, Arial, sans-serif; color: var(--text); background: var(--bg); }
+
+/* Centeret container (brug .container omkring dit hovedindhold) */
+.container {
+    width: calc(100% - 2 * var(--gutter));
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 24px 0;
+}
+
+/* Responsivt kort-grid: auto-fit + minmax styrer kolonner automatisk */
+.cards {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* Billeder skalerer korrekt */
+img { max-width: 100%; height: auto; display: block; }
+
+/* Simple breakpoints (juster værdier efter behov) */
+@media (min-width: 600px) {
+    .container { padding: 32px 0; }
+}
+
+@media (min-width: 900px) {
+    .container { padding: 40px 0; }
+}
+/* SLUT PÅ MEDIA RESPONSIVT DESIGN*/
+
