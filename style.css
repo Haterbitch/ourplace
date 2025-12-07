@@ -1,39 +1,125 @@
 :root{
-    --max-width: 1100px;
+    --max-width: 980px;
     --gutter: 16px;
-    --accent: #1a73e8;
-    --bg: #f7f8fb;
-    --text: #222;
+
+    --mint: #62d7c9;
+    --pink: #ffb7d0;
+    --soft-blue: #90e0f0;
+    --mustard: #ffd77a;
+    --bg: #f6f6f5;
+    --card-bg: #ffffff;
+    --accent: #29b6a0;
+    --text: #111;
 }
 
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; font-family: system-ui, Arial, sans-serif; color: var(--text); background: var(--bg); }
+html,body { margin:0; padding:0; background: var(--bg); color: var(--text); font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial; -webkit-font-smoothing:antialiased; }
+.container { width: calc(100% - 2 * var(--gutter)); max-width: var(--max-width); margin: 0 auto; padding: 20px 0; }
 
-/* Centeret container (brug .container omkring dit hovedindhold) */
-.container {
-    width: calc(100% - 2 * var(--gutter));
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 24px 0;
+/* HEADER */
+.site-header { background: var(--mint); box-shadow: 0 2px 0 rgba(0,0,0,0.04); }
+.header-row { display: flex; align-items: center; gap: 12px; justify-content: space-between; padding: 10px 0; }
+.logo-img { width: 44px; height: 44px; object-fit: cover; border-radius: 8px; background: white; padding: 4px; }
+
+/* NAV */
+.main-nav { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; justify-content: center; flex: 1; }
+.main-nav a { color: #063; text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: .6px; }
+
+/* BOOK BUTTON */
+.book-btn { background: var(--pink); color: #000; padding: 8px 14px; border-radius: 20px; text-decoration: none; font-weight:700; box-shadow: 0 2px 0 rgba(0,0,0,0.06); }
+
+/* TITLE SECTION */
+.title-section { position: relative; text-align: center; margin: 28px 0 6px; }
+.brand { font-family: "Fredoka One", cursive; font-size: 3rem; margin: 0; letter-spacing: -2px; display:inline-block; }
+.dash { font-weight: 800; margin-left: 6px; }
+.sub { margin: 6px 0 0; font-size: 1rem; color: #444; }
+.tilt-card { position: absolute; right: 8%; top: -8px; width: 86px; transform: rotate(12deg); }
+
+/* FEATURES CARDS */
+.features { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); margin-top: 18px; }
+.card {
+    position: relative;    /* <<--- VIGTIGT: gør .card til reference for absolut positionering */
+    overflow: visible;     /* sikrer at billedet ikke bliver klippet hvis det stikker ud */
+    border-radius: 14px;
+    padding: 18px 12px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    min-height: 128px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Responsivt kort-grid: auto-fit + minmax styrer kolonner automatisk */
-.cards {
+/* Din .tilt-card kan evt. justeres lidt for at sidde pænt */
+.tilt-card {
+    position: absolute;
+    right: 8%;
+    top: -8px;
+    width: 86px;
+    transform: rotate(12deg);
+    pointer-events: none;
+}
+.card h3 { margin: 10px 0 0; font-size: 1.05rem; font-weight:700; line-height:1.05; }
+
+/* pawn decorations */
+.pawn { width: 48px; height: 48px; border-radius: 22px; margin-bottom: 6px; box-shadow: 0 3px 0 rgba(0,0,0,0.06); border: 6px solid rgba(255,255,255,0.9); }
+.pawn-yellow { background: linear-gradient(180deg, #ffd77a, #ffc857); }
+.pawn-blue { background: linear-gradient(180deg, #90e0f0, #64c7d9); }
+.pawn-teal { background: linear-gradient(180deg, #b2f7ec, #62d7c9); }
+.pawn-pink { background: linear-gradient(180deg, #ffb7d0, #ff92c2); }
+
+/* PROMO BANNER */
+.promo { margin: 22px 0; display:flex; justify-content:center; }
+.promo-inner {
+    background: #fff;
+    padding: 18px 14px;
+    border-radius: 12px;
+    border: 6px solid rgba(40,180,160,0.12);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-align:center;
+    min-width: 260px;
+    max-width: 880px;
+}
+
+/* MENU IMAGE (centered) */
+.menu-image { display:flex; justify-content:center; margin: 18px 0 40px; }
+.menu-image img { width: 300px; max-width: 100%; border-radius: 6px; box-shadow: 0 8px 22px rgba(0,0,0,0.08); border: 8px solid #ffdff0; }
+
+/* FOOTER */
+.site-footer {
     display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: #bfeeea;
+    padding: 14px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    font-size: 0.9rem;
+}
+.footer-left, .footer-center, .footer-right { display:flex; flex-direction:column; gap:4px; align-items:flex-start; }
+.footer-center { align-items:center; text-align:center; }
+.footer-right { align-items:flex-end; justify-content:center; }
+.footer-brand { font-weight:800; font-size:1.05rem; }
+.social { display:inline-block; width:34px; height:34px; border-radius:8px; background:#fff; color:#000; text-align:center; line-height:34px; text-decoration:none; font-weight:700; }
+
+/* RESPONSIVE TWEAKS */
+@media (max-width: 900px) {
+    .brand { font-size: 2.6rem; }
+    .tilt-card { width: 70px; right: 6%; top: 8px; transform: rotate(10deg); }
+    .menu-image img { width: 260px; }
+    .site-footer { grid-template-columns: 1fr; text-align:center; }
+    .footer-right { align-items:center; }
 }
 
-/* Billeder skalerer korrekt */
-img { max-width: 100%; height: auto; display: block; }
-
-/* Simple breakpoints (juster værdier efter behov) */
-@media (min-width: 600px) {
-    .container { padding: 32px 0; }
+@media (max-width: 480px) {
+    .brand { font-size: 2.0rem; }
+    .title-section { margin-top: 6px; }
+    .main-nav { display: none; } /* skjul nav på meget små skærme - kan ændres */
+    .header-row { gap: 8px; padding: 8px 0; }
+    .book-btn { padding: 8px 10px; font-size:0.9rem; }
+    .promo-inner { font-size: 1rem; padding: 14px; }
+    .features { gap: 12px; }
 }
-
-@media (min-width: 900px) {
-    .container { padding: 40px 0; }
-}
-/* SLUT PÅ MEDIA RESPONSIVT DESIGN*/
-
