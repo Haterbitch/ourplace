@@ -1,5 +1,5 @@
 :root{
-    --max-width: 980px;
+    --max-width: 1200px;
     --gutter: 16px;
 
     --mint: #79D9C7;
@@ -12,12 +12,20 @@
     --text: #111;
 
     --heading-font: 'Londrina Solid', sans-serif;
-    --nav-font: 'Zalando Sans Expanded', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --nav-font: 'Zalando Sans Expanded';
 }
 
 * { box-sizing: border-box; }
-html,body { margin:0; padding:0; background: var(--bg); color: var(--text); font-family: "Inter", system-ui, -apple-system, "Segoe UI"; -webkit-font-smoothing:antialiased; }
-.container { width: calc(100% - 2 * var(--gutter)); max-width: var(--max-width); margin: 0 auto; padding: 20px 0; }
+html,body { margin:0;
+    padding:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI";
+    -webkit-font-smoothing:antialiased; }
+.container { width: calc(100% - 2 * var(--gutter));
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 20px 0; }
 
 /* Overskrifter bruger variablen fra :root */
 h1, h2, h3, h4, h5, h6 {
@@ -26,8 +34,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* HEADER */
 .site-header { background: var(--mint); box-shadow: 0 2px 0 rgba(0,0,0,0.04); }
-.header-row { display: flex; align-items: center; gap: 12px; justify-content: space-between; padding: 10px 0; }
-.logo-img { width: 44px; height: 44px; object-fit: cover; border-radius: 8px; background: white; padding: 4px; }
+.header-row { display: flex; align-items: center; gap: 15px; justify-content: space-between; padding: 10px 0; }
+.logo-img { width: auto; height:60px; border-radius: 8px;}
 
 /* NAV */
 .main-nav { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; justify-content: center; flex: 1; }
@@ -45,8 +53,13 @@ h1, h2, h3, h4, h5, h6 {
 .title-section { position: relative; text-align: center; margin: 28px 0 6px; }
 .brand { font-size: 7rem; margin: 0; letter-spacing: -2px; display:inline-block; }
 .dash { font-weight: 800; margin-left: 6px; }
-.sub { margin: 6px 0 0; font-size: 3rem; color: #444; }
-.tilt-card { position: absolute; right: 8%; top: -8px; width: 86px; transform: rotate(12deg); }
+.sub { font-family: "Zalando Sans Expanded"; margin: 6px 0 0; font-size: 30px; color: #444; }
+.tilt-card { position: absolute; right: 8%; top: -8px; width: 140px; transform: rotate(12deg); }
+
+.tilt-card:hover {
+    transform: scale(1.05) rotate(-2deg); /* Hover effekt (valgfri - gør den levende) */
+    transition: transform 0.2s;/* Et lille "hop" når man holder musen over */
+}
 
 /* FEATURES CARDS */
 .features { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); margin-top: 18px; }
@@ -104,7 +117,7 @@ text-align: right;
     background: #fff;
     padding: 24px 36px;                  /* mindre horisontal padding så teksten kan være på én linje */
     border-radius: 12px;
-    border: 6px solid rgb(121, 217, 199);
+    border: 4px solid rgb(121, 217, 199);
     box-shadow: 0 6px 16px rgb(255, 148, 196);
     font-family: "Londrina Solid", sans-serif;
     font-weight: 700;
@@ -130,6 +143,108 @@ text-align: right;
     box-shadow: 0 8px 22px rgba(0,0,0,0.08);
     border: 8px solid #ffdff0; }
 
+/* Container der centrerer knappen midt på siden */
+.button-container {
+    display: flex;
+    justify-content: center; /* Centrerer vandret */
+    align-items: center;     /* Centrerer lodret (hvis containeren har højde) */
+    width: 100%;
+    margin: 50px 0;          /* Lidt luft over og under */
+}
+
+.menuknap {
+    /* Skrifttype og størrelse */
+    font-family: "Londrina Solid", sans-serif;
+    font-weight: 900;       /* Den tykkeste vægt ser bedst ud */
+    font-size: 100px;        /* Den skal være stor for at ligne billedet */
+    line-height: 0.8;       /* Skubber bogstaverne lidt tættere sammen lodret */
+
+    /* Farver */
+    color: #79D9C7;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    /* MAGIEN: Skyggen der laver den lyserøde kant */
+    text-shadow: 6px 6px 0px #FF85C1; /* Lyserød "hard shadow" */
+
+    /* Hover effekt (valgfri - gør den levende) */
+    transition: transform 0.2s;
+}
+
+.menuknap:hover {
+    transform: scale(1.05) rotate(-2deg); /* Et lille "hop" når man holder musen over */
+}
+
+/* Selve baggrunden (den mørke skærm) */
+.modal {
+    display: none; /* Skjult som standard */
+    position: fixed; /* Bliver på samme sted når man scroller */
+    z-index: 1000; /* Sørger for den ligger OVENPÅ alt andet */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Hvis billedet er for højt, kan man scrolle */
+    background-color: rgba(0, 0, 0, 0.8); /* Sort baggrund med gennemsigtighed */
+}
+
+/* Wrapper til at centrere indholdet */
+.modal-content-wrapper {
+    position: relative;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Sikrer vertikal centrering */
+    pointer-events: none; /* Tillader klik igennem wrapperen til baggrunden */
+}
+
+/* Selve billedet */
+.modal-content {
+    display: block;
+    max-width: 90%; /* Billedet fylder max 90% af skærmen */
+    max-height: 90vh;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    pointer-events: auto; /* Gør billedet klikbart igen */
+    animation: zoom 0.3s; /* Lille zoom effekt når den åbner */
+}
+
+/* Luk knappen (X) */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    pointer-events: auto;
+    transition: 0.3s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #FF85C1; /* Din lyserøde farve */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Animation for lækkerhedsfølelse */
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* Mobil tilpasning */
+@media only screen and (max-width: 700px) {
+    .modal-content {
+        width: 100%;
+    }
+}
+
 /* FOOTER */
 .site-footer {
     display: grid;
@@ -145,46 +260,24 @@ text-align: right;
 .footer-center { align-items:center; text-align:center; }
 .footer-right { align-items:flex-end; justify-content:center; }
 .footer-brand { font-weight:800; font-size:1.05rem; }
-.social { display:inline-block; width:34px; height:34px; border-radius:8px; background:#fff; color:#000; text-align:center; line-height:34px; text-decoration:none; font-weight:700; }
-
-/* RESPONSIVE TWEAKS */
-@media (max-width: 900px) {
-    .brand { font-size: 2.6rem; }
-    .tilt-card { width: 70px; right: 6%; top: 8px; transform: rotate(10deg); }
-    .menu-image img { width: 260px; }
-    .site-footer { grid-template-columns: 1fr; text-align:center; }
-    .footer-right { align-items:center; }
+/* Ikon Styling */
+.social {
+    color: #000; /* Farven på ikonet (sort) - skift til hvid (#fff) hvis din footer er mørk */
+    font-size: 2rem; /* Størrelsen på ikonet */
+    margin-left: 15px; /* Luft mellem ikonerne */
+    transition: transform 0.2s, color 0.2s;
+    text-decoration: none; /* Fjerner understregning */
 }
 
-@media (max-width: 480px) {
-    .brand { font-size: 2.0rem; }
-    .title-section { margin-top: 6px; }
-    .main-nav { display: none; } /* skjul nav på meget små skærme - kan ændres */
-    .header-row { gap: 8px; padding: 8px 0; }
-    .book-btn { padding: 8px 10px; font-size:0.9rem; }
-    .promo-inner { font-size: 1rem; padding: 14px; }
-    .features { gap: 12px; }
-    .pawn-img { width: 52px; top: -16px; left: 10px; }
+/* Hover effekt (når musen holder over) */
+.social:hover {
+    transform: scale(1.1); /* Gør den lidt større */
+    color: #FF85C1; /* Skifter til din lyserøde temafarve */
 }
-@media (max-width: 900px) {
-    .promo-inner {
-        font-size: 34px;
-        padding: 20px 28px;
-        white-space: nowrap;
-    }
-}
-@media (max-width: 480px) {
-    .promo-inner {
-        font-size: 20px;                     /* mindre font på små skærme */
-        padding: 14px 18px;
-        white-space: normal;                 /* tillad wrapping på meget små skærme for læsbarhed */
-    }}
+
 
 /* HER SLUTTER FORSIDE CSS */
 
 /* HER STARTER CSS BARSELSTILBUD*/
-
-
-
 
 

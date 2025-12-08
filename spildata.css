@@ -1,0 +1,115 @@
+
+/* Sektion styling */
+.game-library-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Søgefelt */
+#searchBar {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    border: 6px solid rgb(121, 217, 199);
+    box-shadow: 0 6px 16px rgb(255, 148, 196);
+    border-radius: 30px; /* Runde kanter som dine knapper */
+    outline: none;
+    box-shadow: 0 6px 16px rgb(255, 148, 196);
+}
+
+/* Filter knapper */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: 2px solid #79D9C7;
+    border-radius: 20px;
+    background-color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+.filter-btn:hover {
+    transform: translateY(-2px);
+    background-color: #89D0F0;
+    box-shadow: 4px 4px 0px rgb(255, 214, 134);
+}
+
+
+
+/* Grid til spillene */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Selve spilkortet */
+.game-card {
+    background: #fff;
+    border: 3px solid #89d0f0;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: left;
+    transition: transform 0.2s;
+    position: relative;
+    /* Gør klar til at kortet kan skjules pænt */
+    display: flex;
+    flex-direction: column;
+}
+
+.game-card:hover {
+    transform: scale(1.02);
+}
+
+.game-title {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.game-info {
+    font-family: "Zalando Sans Expanded";
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.game-desc {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Sikrer at knappen altid sidder i bunden */
+}
+
+.game-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    background-color: #E0F2F1; /* Lysegrøn */
+    border: 1px solid #000000;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Skjul elementer med animation (bruges af JS) */
+.hidden {
+    display: none;
+}
