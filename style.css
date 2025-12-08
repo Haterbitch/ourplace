@@ -39,13 +39,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* BOOK BUTTON */
-.book-btn { background: var(--pink); color: #000; padding: 8px 14px; border-radius: 20px; text-decoration: none; font-weight:700; box-shadow: 0 2px 0 rgba(0,0,0,0.06); }
+.book-btn { background: var(--pink); color: #000000; padding: 8px 14px; border-radius: 20px; text-decoration: none; font-weight:700; box-shadow: 0 2px 0 rgba(0,0,0,0.06); }
 
 /* TITLE SECTION */
 .title-section { position: relative; text-align: center; margin: 28px 0 6px; }
-.brand { font-size: 5rem; margin: 0; letter-spacing: -2px; display:inline-block; }
+.brand { font-size: 7rem; margin: 0; letter-spacing: -2px; display:inline-block; }
 .dash { font-weight: 800; margin-left: 6px; }
-.sub { margin: 6px 0 0; font-size: 1rem; color: #444; }
+.sub { margin: 6px 0 0; font-size: 3rem; color: #444; }
 .tilt-card { position: absolute; right: 8%; top: -8px; width: 86px; transform: rotate(12deg); }
 
 /* FEATURES CARDS */
@@ -58,7 +58,6 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
     min-height: 128px;
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -89,33 +88,47 @@ h1, h2, h3, h4, h5, h6 {
     filter: drop-shadow(0 8px 6px rgba(0,0,0,0.12));
 }
 
-/* Bevar farvede fallback-pawns hvis du vil bruge dem senere */
-.pawn { width: 48px; height: 48px; border-radius: 22px; margin-bottom: 6px; box-shadow: 0 3px 0 rgba(0,0,0,0.06); border: 6px solid rgba(255,255,255,0.9); }
-.pawn-yellow { background: linear-gradient(180deg, #ffd77a, #ffc857); }
-.pawn-blue { background: linear-gradient(180deg, #90e0f0, #64c7d9); }
-.pawn-teal { background: linear-gradient(180deg, #b2f7ec, #62d7c9); }
-.pawn-pink { background: linear-gradient(180deg, #ffb7d0, #ff92c2); }
-
-.card h3 { margin: 10px 0 0; font-size: 1.05rem; font-weight:700; line-height:1.05; }
-
-/* PROMO BANNER */
-.promo { margin: 22px 0; display:flex; justify-content:center; }
-.promo-inner {
-    background: #fff;
-    padding: 18px 14px;
-    border-radius: 12px;
-    border: 6px solid rgba(40,180,160,0.12);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.04);
-    font-weight: 700;
-    font-size: 1.25rem;
-    text-align:center;
-    min-width: 260px;
-    max-width: 880px;
+.card h3 {
+text-align: right;
+    font-size: 25px;
+    font-weight:700;
+    line-height:1.05;
 }
 
+/* PROMO BANNER */
+.promo { margin: 22px 0;
+    display:flex;
+    justify-content:center;
+}
+.promo-inner {
+    background: #fff;
+    padding: 24px 36px;                  /* mindre horisontal padding så teksten kan være på én linje */
+    border-radius: 12px;
+    border: 6px solid rgb(121, 217, 199);
+    box-shadow: 0 6px 16px rgb(255, 148, 196);
+    font-family: "Londrina Solid", sans-serif;
+    font-weight: 700;
+    font-size: 40px;                     /* juster størrelse efter behov */
+    text-align: center;
+    min-width: 260px;
+    max-width: 880px;
+    white-space: nowrap;                 /* forhindrer linjeskift */
+    overflow: hidden;                    /* skjuler evt. overløb i boksen */
+    text-overflow: clip;                 /* eller 'ellipsis' hvis du vil vise ... ved overflow */
+}
+
+
+
 /* MENU IMAGE (centered) */
-.menu-image { display:flex; justify-content:center; margin: 18px 0 40px; }
-.menu-image img { width: 300px; max-width: 100%; border-radius: 6px; box-shadow: 0 8px 22px rgba(0,0,0,0.08); border: 8px solid #ffdff0; }
+.menu-image { display:flex;
+    justify-content:center;
+    margin: 18px 0 40px; }
+.menu-image img {
+    width: 700px;
+    max-width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+    border: 8px solid #ffdff0; }
 
 /* FOOTER */
 .site-footer {
@@ -152,4 +165,168 @@ h1, h2, h3, h4, h5, h6 {
     .promo-inner { font-size: 1rem; padding: 14px; }
     .features { gap: 12px; }
     .pawn-img { width: 52px; top: -16px; left: 10px; }
+}
+@media (max-width: 900px) {
+    .promo-inner {
+        font-size: 34px;
+        padding: 20px 28px;
+        white-space: nowrap;
+    }
+}
+@media (max-width: 480px) {
+    .promo-inner {
+        font-size: 20px;                     /* mindre font på små skærme */
+        padding: 14px 18px;
+        white-space: normal;                 /* tillad wrapping på meget små skærme for læsbarhed */
+    }}
+
+/* HER SLUTTER FORSIDE CSS */
+
+/* HER STARTER CSS BARSELSTILBUD*/
+
+
+
+.wrapper {
+    width: 100%;
+    height: 360px;               /* nok højde så kortene ikke bliver klippet */
+    min-height: 320px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;           /* vis hele kortet (ikke klip bort) */
+    perspective: 1000px;         /* perspektiv for 3D-effekten */
+    --perspective: 1000px;
+}
+
+.inner {
+    --w: 140px;                  /* kort-bredde (juster efter behov) */
+    --h: 200px;                  /* kort-højde (juster efter behov) */
+    --translateZ: calc(var(--w) * 1.8); /* mindre Z så kortene ikke "forsvinder" */
+    --rotateX: -15deg;
+    position: relative;
+    width: var(--w);
+    height: var(--h);
+    transform-style: preserve-3d;
+    animation: rotating 20s linear infinite;
+    transform-origin: center center;
+}
+
+/* rotation */
+@keyframes rotating {
+    from {
+        transform: rotateX(var(--rotateX)) rotateY(0);
+    }
+    to {
+        transform: rotateX(var(--rotateX)) rotateY(1turn);
+    }
+}
+
+/* kort (kortene placeres i en cirkel ved hjælp af rotateY + translateZ) */
+.kort {
+    position: absolute;
+    width: var(--w);
+    height: var(--h);
+    left: 50%;
+    top: 50%;
+    transform-origin: center center;
+    /* rotation omkring Y og flytning udad + centrer kortet omkring midten */
+    transform: translate(-50%, -50%) rotateY(calc((360deg / var(--quantity)) * var(--index))) translateZ(var(--translateZ));
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgba(var(--color-card), 0.9);
+    backface-visibility: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+/* .photo er en fyldt flade; brug background med var(--color-card) */
+.photo {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(var(--color-card));
+    background-image: radial-gradient(
+            circle,
+            rgba(var(--color-card), 0.18) 0%,
+            rgba(var(--color-card), 0.6) 60%,
+            rgba(var(--color-card), 0.9) 100%
+    );
+    display: block;
+}
+
+/* Responsiv: gør kortene mindre på små skærme */
+@media (max-width: 900px) {
+    .inner { --w: 110px; --h: 160px; --translateZ: calc(var(--w) * 1.8); }
+    .wrapper { height: 300px; min-height: 260px; }
+}
+@media (max-width: 480px) {
+    .inner { --w: 90px; --h: 130px; --translateZ: calc(var(--w) * 1.8); }
+    .wrapper { height: 240px; min-height: 220px; }
+}
+
+
+
+
+
+
+/* From Uiverse.io by gharsh11032000 */
+.card {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100% );
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card___6 {
+    width: 48px;
+    fill: #333;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card___6:hover {
+    transform: rotate(-5deg) scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card___6:hover .card__content {
+    transform: translate(-50%, -50%) rotate(0deg);
+    opacity: 1;
+}
+
+.card__title {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+    font-weight: 700;
+}
+
+.card__description {
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: #777;
+    line-height: 1.4;
+}
+
+.card___6:hover  {
+    scale: 0;
+    transform: rotate(-45deg);
 }
