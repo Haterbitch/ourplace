@@ -14,7 +14,10 @@
     --heading-font: 'Londrina Solid', sans-serif;
     --nav-font: 'Zalando Sans Expanded';
 }
-
+a{
+    text-decoration: none;
+    color: #000;
+}
 * { box-sizing: border-box; }
 html,body { margin:0;
     padding:0;
@@ -37,13 +40,13 @@ h1, h2, h3, h4, h5, h6 {
 .header-row { display: flex; align-items: center; gap: 15px; justify-content: space-between; padding: 10px 0; }
 .logo-img { width: auto; height:60px; border-radius: 8px;}
 
+
 /* NAV */
 .main-nav { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; justify-content: center; flex: 1; }
 .main-nav a { color: #000000; text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: .6px; }
 /* Navbar og footer bruger nav-font variablen */
 .main-nav,
-.site-footer {
-    font-family: var(--nav-font);
+.site-footer { font-family: var(--nav-font);
 }
 
 /* BOOK BUTTON */
@@ -273,8 +276,8 @@ text-align: right;
 .social:hover {
     transform: scale(1.1); /* Gør den lidt større */
     color: #FF85C1; /* Skifter til din lyserøde temafarve */
+    text-decoration: none;
 }
-
 
 /* HER SLUTTER FORSIDE CSS */
 
