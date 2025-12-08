@@ -2,19 +2,27 @@
     --max-width: 980px;
     --gutter: 16px;
 
-    --mint: #62d7c9;
-    --pink: #ffb7d0;
-    --soft-blue: #90e0f0;
-    --mustard: #ffd77a;
-    --bg: #f6f6f5;
+    --mint: #79D9C7;
+    --pink: #FF94C4;
+    --soft-blue: #89D0F0;
+    --mustard: #FFD686;
+    --bg: #F7F7F3;
     --card-bg: #ffffff;
     --accent: #29b6a0;
     --text: #111;
+
+    --heading-font: 'Londrina Solid', sans-serif;
+    --nav-font: 'Zalando Sans Expanded', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 * { box-sizing: border-box; }
-html,body { margin:0; padding:0; background: var(--bg); color: var(--text); font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial; -webkit-font-smoothing:antialiased; }
+html,body { margin:0; padding:0; background: var(--bg); color: var(--text); font-family: "Inter", system-ui, -apple-system, "Segoe UI"; -webkit-font-smoothing:antialiased; }
 .container { width: calc(100% - 2 * var(--gutter)); max-width: var(--max-width); margin: 0 auto; padding: 20px 0; }
+
+/* Overskrifter bruger variablen fra :root */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+}
 
 /* HEADER */
 .site-header { background: var(--mint); box-shadow: 0 2px 0 rgba(0,0,0,0.04); }
@@ -23,14 +31,19 @@ html,body { margin:0; padding:0; background: var(--bg); color: var(--text); font
 
 /* NAV */
 .main-nav { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; justify-content: center; flex: 1; }
-.main-nav a { color: #063; text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: .6px; }
+.main-nav a { color: #000000; text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: .6px; }
+/* Navbar og footer bruger nav-font variablen */
+.main-nav,
+.site-footer {
+    font-family: var(--nav-font);
+}
 
 /* BOOK BUTTON */
 .book-btn { background: var(--pink); color: #000; padding: 8px 14px; border-radius: 20px; text-decoration: none; font-weight:700; box-shadow: 0 2px 0 rgba(0,0,0,0.06); }
 
 /* TITLE SECTION */
 .title-section { position: relative; text-align: center; margin: 28px 0 6px; }
-.brand { font-family: "Fredoka One", cursive; font-size: 3rem; margin: 0; letter-spacing: -2px; display:inline-block; }
+.brand { font-size: 5rem; margin: 0; letter-spacing: -2px; display:inline-block; }
 .dash { font-weight: 800; margin-left: 6px; }
 .sub { margin: 6px 0 0; font-size: 1rem; color: #444; }
 .tilt-card { position: absolute; right: 8%; top: -8px; width: 86px; transform: rotate(12deg); }
@@ -38,8 +51,8 @@ html,body { margin:0; padding:0; background: var(--bg); color: var(--text); font
 /* FEATURES CARDS */
 .features { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); margin-top: 18px; }
 .card {
-    position: relative;    /* <<--- VIGTIGT: gør .card til reference for absolut positionering */
-    overflow: visible;     /* sikrer at billedet ikke bliver klippet hvis det stikker ud */
+    position: relative;
+    overflow: visible;
     border-radius: 14px;
     padding: 18px 12px;
     text-align: center;
@@ -50,24 +63,40 @@ html,body { margin:0; padding:0; background: var(--bg); color: var(--text); font
     align-items: center;
     justify-content: center;
 }
-
-/* Din .tilt-card kan evt. justeres lidt for at sidde pænt */
-.tilt-card {
-    position: absolute;
-    right: 8%;
-    top: -8px;
-    width: 86px;
-    transform: rotate(12deg);
-    pointer-events: none;
+.card-1 {
+ background:#FFD686;
 }
-.card h3 { margin: 10px 0 0; font-size: 1.05rem; font-weight:700; line-height:1.05; }
+.card-2 {
+    background:#79D9C7;
 
-/* pawn decorations */
+}
+.card-3 {
+    background: #89D0F0;
+}
+.card-4 {
+    background: #FF94C4;
+
+}
+
+/* Vis PNG-brikken på kortet */
+.pawn-img {
+    position: absolute;
+    top: -22px;            /* flyt billedet op så det overlapper kortets top */
+    left: 13px;            /* afstand fra venstre kant */
+    width: 72px;           /* størrelse - juster efter behov */
+    height: auto;
+    pointer-events: none;
+    filter: drop-shadow(0 8px 6px rgba(0,0,0,0.12));
+}
+
+/* Bevar farvede fallback-pawns hvis du vil bruge dem senere */
 .pawn { width: 48px; height: 48px; border-radius: 22px; margin-bottom: 6px; box-shadow: 0 3px 0 rgba(0,0,0,0.06); border: 6px solid rgba(255,255,255,0.9); }
 .pawn-yellow { background: linear-gradient(180deg, #ffd77a, #ffc857); }
 .pawn-blue { background: linear-gradient(180deg, #90e0f0, #64c7d9); }
 .pawn-teal { background: linear-gradient(180deg, #b2f7ec, #62d7c9); }
 .pawn-pink { background: linear-gradient(180deg, #ffb7d0, #ff92c2); }
+
+.card h3 { margin: 10px 0 0; font-size: 1.05rem; font-weight:700; line-height:1.05; }
 
 /* PROMO BANNER */
 .promo { margin: 22px 0; display:flex; justify-content:center; }
@@ -122,4 +151,5 @@ html,body { margin:0; padding:0; background: var(--bg); color: var(--text); font
     .book-btn { padding: 8px 10px; font-size:0.9rem; }
     .promo-inner { font-size: 1rem; padding: 14px; }
     .features { gap: 12px; }
+    .pawn-img { width: 52px; top: -16px; left: 10px; }
 }
