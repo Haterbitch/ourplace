@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const html = `
                     <div class="game-card h-100">
                         <h3 class="game-title">${game.title}</h3>
-                        <div class="game-info mb-2 text-muted">👥 ${game.players} • ⏱ ${game.time}</div>
+                        <div class="game-info mb-2 text-muted ">👥 ${game.players} • ⏱ ${game.time}</div>
                         <p class="game-desc">${game.desc}</p>
                         <span class="game-tag" style="background-color: ${tagColor}">${game.category}</span>
                     </div>
