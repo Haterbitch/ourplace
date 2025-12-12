@@ -11,17 +11,20 @@
 }
 
 /* Søgefelt */
+/* --- SØGEFELT (DESIGNET SOM BILLEDE 2) --- */
 #searchBar {
-    width: 100%;
-    max-width: 500px;
-    padding: 15px;
-    margin-bottom: 20px;
-    font-size: 1rem;
-    border: 6px solid rgb(121, 217, 199);
-    box-shadow: 0 6px 16px rgb(255, 148, 196);
-    border-radius: 30px; /* Runde kanter som dine knapper */
-    outline: none;
-    box-shadow: 0 6px 16px rgb(255, 148, 196);
+    border: 4px solid var(--mint) !important; /* Tyk grøn kant */
+    border-radius: 12px !important;
+    padding: 12px 20px !important;
+    box-shadow: 0 0 20px -5px var(--pink) !important; /* Lyserød glød/skygge */
+    font-family: var(--nav-font);
+    font-size: 1.1rem;
+    color: #333;
+}
+
+#searchBar:focus {
+    box-shadow: 0 0 25px -2px var(--pink) !important;
+    outline: none !important;
 }
 
 /* Filter knapper */
