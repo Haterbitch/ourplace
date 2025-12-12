@@ -1,434 +1,302 @@
 :root{
     --max-width: 1200px;
-    --gutter: 16px;
-
     --mint: #79D9C7;
     --pink: #FF94C4;
     --soft-blue: #89D0F0;
     --mustard: #FFD686;
     --bg: #F7F7F3;
     --card-bg: #ffffff;
-    --accent: #29b6a0;
     --text: #111;
 
     --heading-font: 'Londrina Solid', sans-serif;
-    --nav-font: 'Zalando Sans Expanded';
+    --nav-font: 'Zalando Sans Expanded', sans-serif;
+    --body-font: "Inter", system-ui, sans-serif;
 }
-a{
-    text-decoration: none;
-    color: #000;
-}
-* { box-sizing: border-box; }
-html,body { margin:0;
-    padding:0;
+
+body {
     background: var(--bg);
     color: var(--text);
-    font-family: "Inter", system-ui, -apple-system, "Segoe UI";
-    -webkit-font-smoothing:antialiased; }
-.container { width: calc(100% - 2 * var(--gutter));
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 20px 0; }
+    font-family: var(--body-font);
+    -webkit-font-smoothing: antialiased;
+}
 
-/* Overskrifter bruger variablen fra :root */
+/* --- TEXT STYLING --- */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--heading-font);
 }
 
-/* HEADER */
-.site-header { background: var(--mint); box-shadow: 0 2px 0 rgba(0,0,0,0.04); }
-.header-row { display: flex; align-items: center; gap: 15px; justify-content: space-between; padding: 10px 0; }
-.logo-img { width: auto; height:60px; border-radius: 8px;}
-
-
-/* NAV */
-.main-nav { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; justify-content: center; flex: 1; }
-.main-nav a { color: #000000; text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: .6px; }
-/* Navbar og footer bruger nav-font variablen */
-.main-nav,
-.site-footer { font-family: var(--nav-font);
+a {
+    text-decoration: none;
+    color: #000;
 }
 
-/* BOOK BUTTON */
-.book-btn { background: var(--pink); color: #000000; padding: 8px 14px; border-radius: 20px; text-decoration: none; font-weight:700; box-shadow: 0 2px 0 rgba(0,0,0,0.06); }
+/* --- BOOTSTRAP NAVBAR OVERRIDES --- */
+.site-header {
+    background: var(--mint);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.04);
+}
 
-/* TITLE SECTION */
-.title-section {
-    position: relative;
-    text-align: center;
-    margin: 28px 0 6px; }
+.logo-img {
+    height: 60px;
+    border-radius: 8px;
+}
+
+.navbar-nav .nav-link {
+    font-family: var(--nav-font);
+    color: #000000 !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    margin: 0 10px;
+}
+
+.navbar-toggler {
+    border: none;
+}
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.book-btn {
+    background: var(--pink);
+    color: #000000;
+    padding: 8px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.06);
+    white-space: nowrap;
+    display: inline-block;
+}
+
+/* --- TITLE SECTION --- */
 .brand {
-    font-size: 7rem;
-    margin: 0;
+    font-size: 4rem; /* Lidt mindre på mobil default */
     letter-spacing: -2px;
-    display:inline-block; }
+}
+/* Større på desktop */
+@media (min-width: 768px) {
+    .brand { font-size: 7rem; }
+}
+
 .dash {
     font-weight: 800;
-    margin-left: 6px; }
+    margin-left: 6px;
+}
+
 .sub {
-    font-family: "Zalando Sans Expanded";
+    font-family: var(--nav-font);
     margin: 6px 0 0;
-    font-size: 30px;
-    color: #444; }
+    font-size: 24px;
+    color: #444;
+}
+@media (min-width: 768px) { .sub { font-size: 30px; } }
+
 .tilt-card {
     position: absolute;
-    right: 8%; top: -8px;
-    width: 140px;
-    transform: rotate(12deg); }
-.under {
-    font-size: 3rem;
-    margin: 0;
-    letter-spacing: -2px;
-    display:inline-block;
-    justify-content: center;
+    right: 10%;
+    top: -8px;
+    width: 100px;
+    transform: rotate(12deg);
+    transition: transform 0.2s;
+}
+@media (min-width: 992px) {
+    .tilt-card { width: 140px; right: 8%; }
 }
 .tilt-card:hover {
-    transform: scale(1.05) rotate(-2deg); /* Hover effekt (valgfri - gør den levende) */
-    transition: transform 0.2s;/* Et lille "hop" når man holder musen over */
+    transform: scale(1.05) rotate(-2deg);
 }
 
 
-/* FEATURES CARDS */
-.features { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); margin-top: 18px; }
-.card {
+/* --- CUSTOM CARDS (Bootstrap Columns holder dem nu) --- */
+.custom-card {
     position: relative;
-    overflow: visible;
+    overflow: visible; /* Vigtigt for brikkerne der stikker op */
     border-radius: 14px;
-    padding: 18px 12px;
+    padding: 24px 12px;
     text-align: center;
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    min-height: 128px;
+    min-height: 140px;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-.card-1 {
- background:#FFD686;
-}
-.card-2 {
-    background:#79D9C7;
-
-}
-.card-3 {
-    background: #89D0F0;
-}
-.card-4 {
-    background: #FF94C4;
-
+    border: none; /* Fjern bootstrap card border */
+    transition: transform 0.2s;
 }
 
-/* Vis PNG-brikken på kortet */
+.custom-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-1 { background:#FFD686; }
+.card-2 { background:#79D9C7; }
+.card-3 { background:#89D0F0; }
+.card-4 { background:#FF94C4; }
+
+.custom-card h3 {
+    text-align: right;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-top: 10px;
+    width: 100%;
+}
+
 .pawn-img {
     position: absolute;
-    top: -22px;            /* flyt billedet op så det overlapper kortets top */
-    left: 13px;            /* afstand fra venstre kant */
-    width: 72px;           /* størrelse - juster efter behov */
+    top: -22px;
+    left: 13px;
+    width: 60px;
     height: auto;
     pointer-events: none;
     filter: drop-shadow(0 8px 6px rgba(0,0,0,0.12));
 }
+@media (min-width: 992px) { .pawn-img { width: 72px; } }
 
-.card h3 {
-text-align: right;
-    font-size: 25px;
-    font-weight:700;
-    line-height:1.05;
-}
-
-/* PROMO BANNER */
-.promo { margin: 22px 0;
-    display:flex;
-    justify-content:center;
-}
+/* --- PROMO & GAME SEARCH --- */
 .promo-inner {
     background: #fff;
-    padding: 24px 36px;                  /* mindre horisontal padding så teksten kan være på én linje */
+    padding: 15px 20px;
     border-radius: 12px;
-    border: 4px solid rgb(121, 217, 199);
-    box-shadow: 0 6px 16px rgb(255, 148, 196);
-    font-family: "Londrina Solid", sans-serif;
+    border: 4px solid var(--mint);
+    box-shadow: 0 6px 16px var(--pink);
+    font-family: var(--heading-font);
     font-weight: 700;
-    font-size: 40px;                     /* juster størrelse efter behov */
+    font-size: 24px;
     text-align: center;
-    min-width: 260px;
-    max-width: 880px;
-    white-space: nowrap;                 /* forhindrer linjeskift */
-    overflow: hidden;                    /* skjuler evt. overløb i boksen */
-    text-overflow: clip;                 /* eller 'ellipsis' hvis du vil vise ... ved overflow */
+    display: inline-block;
+}
+@media (min-width: 768px) {
+    .promo-inner { font-size: 40px; padding: 24px 36px; }
 }
 
-
-
-/* MENU IMAGE (centered) */
-.menu-image { display:flex;
-    justify-content:center;
-    margin: 18px 0 40px; }
-.menu-image img {
-    width: 700px;
-    max-width: 100%;
-    border-radius: 6px;
-    box-shadow: 0 8px 22px rgba(0,0,0,0.08);
-    border: 8px solid #ffdff0; }
-
-/* Container der centrerer knappen midt på siden */
-.button-container {
-    display: flex;
-    justify-content: center; /* Centrerer vandret */
-    align-items: center;     /* Centrerer lodret (hvis containeren har højde) */
-    width: 100%;
-    margin: 50px 0;          /* Lidt luft over og under */
+/* Søge knapper */
+.filter-btn {
+    background: #fff;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-family: var(--nav-font);
+    cursor: pointer;
+    transition: 0.2s;
+}
+.filter-btn:hover, .filter-btn.active {
+    background: var(--soft-blue);
+    border-color: var(--soft-blue);
+    color: #fff;
 }
 
+/* Spil Grid Container til JS */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+.game-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: left;
+}
+.game-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* --- MENU BUTTON --- */
 .menuknap {
-    /* Skrifttype og størrelse */
-    font-family: "Londrina Solid", sans-serif;
-    font-weight: 900;       /* Den tykkeste vægt ser bedst ud */
-    font-size: 100px;        /* Den skal være stor for at ligne billedet */
-    line-height: 0.8;       /* Skubber bogstaverne lidt tættere sammen lodret */
-
-    /* Farver */
-    color: #79D9C7;
+    font-family: var(--heading-font);
+    font-weight: 900;
+    font-size: 60px;
+    line-height: 0.8;
+    color: var(--mint);
     background: transparent;
     border: none;
     cursor: pointer;
-
-    /* MAGIEN: Skyggen der laver den lyserøde kant */
-    text-shadow: 6px 6px 0px #FF85C1; /* Lyserød "hard shadow" */
-
-    /* Hover effekt (valgfri - gør den levende) */
+    text-shadow: 4px 4px 0px #FF85C1;
     transition: transform 0.2s;
+    max-width: 100%;
 }
+@media (min-width: 768px) { .menuknap { font-size: 100px; text-shadow: 6px 6px 0px #FF85C1; } }
 
 .menuknap:hover {
-    transform: scale(1.05) rotate(-2deg); /* Et lille "hop" når man holder musen over */
+    transform: scale(1.05) rotate(-2deg);
 }
 
-/* Selve baggrunden (den mørke skærm) */
-.modal {
-    display: none; /* Skjult som standard */
-    position: fixed; /* Bliver på samme sted når man scroller */
-    z-index: 1000; /* Sørger for den ligger OVENPÅ alt andet */
+/* --- CUSTOM MODAL (Beholdt da den var specifik) --- */
+.custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000; /* Højere end bootstrap navbar */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* Hvis billedet er for højt, kan man scrolle */
-    background-color: rgba(0, 0, 0, 0.8); /* Sort baggrund med gennemsigtighed */
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.85);
 }
 
-/* Wrapper til at centrere indholdet */
 .modal-content-wrapper {
     position: relative;
     margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Sikrer vertikal centrering */
-    pointer-events: none; /* Tillader klik igennem wrapperen til baggrunden */
+    min-height: 100vh;
+    padding: 20px;
 }
 
-/* Selve billedet */
-.modal-content {
+.modal-content-img {
     display: block;
-    max-width: 90%; /* Billedet fylder max 90% af skærmen */
+    max-width: 100%;
     max-height: 90vh;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-    pointer-events: auto; /* Gør billedet klikbart igen */
-    animation: zoom 0.3s; /* Lille zoom effekt når den åbner */
+    animation: zoom 0.3s;
 }
 
-/* Luk knappen (X) */
 .close-btn {
     position: absolute;
     top: 20px;
-    right: 35px;
+    right: 20px;
     color: #f1f1f1;
-    font-size: 40px;
+    font-size: 50px;
     font-weight: bold;
     cursor: pointer;
-    z-index: 1001;
-    pointer-events: auto;
-    transition: 0.3s;
+    z-index: 2001;
 }
+.close-btn:hover { color: var(--pink); }
 
-.close-btn:hover,
-.close-btn:focus {
-    color: #FF85C1; /* Din lyserøde farve */
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Animation for lækkerhedsfølelse */
 @keyframes zoom {
     from {transform:scale(0)}
     to {transform:scale(1)}
 }
 
-/* Mobil tilpasning */
-@media only screen and (max-width: 700px) {
-    .modal-content {
-        width: 100%;
-    }
-}
-
-/* FOOTER */
+/* --- FOOTER --- */
 .site-footer {
-    display: grid;
-    gap: 12px;
-    grid-template-columns: 1fr 1fr 1fr;
     background: #bfeeea;
-    padding: 14px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
-    font-size: 0.9rem;
+    font-family: var(--nav-font);
+    font-size: 0.95rem;
 }
-.footer-left, .footer-center, .footer-right { display:flex; flex-direction:column; gap:4px; align-items:flex-start; }
-.footer-center { align-items:center; text-align:center; }
-.footer-right { align-items:flex-end; justify-content:center; }
-.footer-brand { font-weight:800; font-size:1.05rem; }
-/* Ikon Styling */
+.footer-brand {
+    font-weight: 800;
+    font-size: 1.2rem;
+}
 .social {
-    color: #000; /* Farven på ikonet (sort) - skift til hvid (#fff) hvis din footer er mørk */
-    font-size: 2rem; /* Størrelsen på ikonet */
-    margin-left: 15px; /* Luft mellem ikonerne */
+    color: #000;
+    font-size: 1.8rem;
     transition: transform 0.2s, color 0.2s;
-    text-decoration: none; /* Fjerner understregning */
 }
-
-/* Hover effekt (når musen holder over) */
 .social:hover {
-    transform: scale(1.1); /* Gør den lidt større */
-    color: #FF85C1; /* Skifter til din lyserøde temafarve */
-    text-decoration: none;
-}
-
-/* HER SLUTTER FORSIDE CSS */
-
-/* HER STARTER CSS BARSELSTILBUD*/
-
-
-
-.containergallery {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-}
-
-h1 {
-    text-align: center;
-    color: #000000; /* Dæmpet lilla */
-    margin: 30px 0;
-    font-weight: 300;
-}
-
-/* Galleri Boks */
-.gallery-wrapper {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    overflow: hidden;
-}
-
-/* Det store billede */
-.main-display img {
-    width: 100%;
-    height: 400px;
-    object-fit: contain;
-    display: block;
-}
-
-.image-text {
-    padding: 25px;
-    background-color: #fff;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.image-text h2 {
-    color: #000000;
-    margin-bottom: 10px;
-}
-
-.image-text p {
-    line-height: 1.6;
-    color: #555;
-    max-width: 700px;
-}
-
-/* Thumbnails (De små billeder) */
-.thumbnails {
-    display: flex;
-    gap: 10px;
-    padding: 15px;
-    background-color: #f8f8f8;
-    overflow-x: auto;
-}
-
-
-.thumb {
-    width: 100px;
-    height: 70px;
-    object-fit: cover;
-    border-radius: 6px;
-    cursor: pointer;
-    opacity: 0.6;
-    transition: 0.3s;
-    border: 2px solid transparent;
-}
-
-.thumb:hover {
-    opacity: 1;
-}
-
-/* Den aktive class (styres af JS) */
-.thumb.active {
-    opacity: 1;
-    border-color: #79D9C7;
-    transform: scale(1.05);
-}
-
-
-/* -------------------------------------------------------- */
-/* --- RESPONSIVT DESIGN (MOBIL) -------------------------- */
-/* -------------------------------------------------------- */
-
-/* Når skærmen er mindre end 768px (Tablets og Mobiler) */
-@media (max-width: 768px) {
-
-    .container {
-        padding: 20px 15px; /* Mindre luft i siderne på mobil */
-    }
-
-    h1 {
-        font-size: 1.8rem; /* Mindre overskrift så den ikke fylder alt */
-        margin-bottom: 20px;
-    }
-
-    /* Gør det store billede lavere på mobil, så man kan se teksten uden at scrolle for meget */
-    .main-display img {
-        height: 250px;
-    }
-
-    .image-text {
-        padding: 20px; /* Mindre padding sparer plads */
-    }
-
-    .image-text h2 {
-        font-size: 1.4rem;
-    }
-
-    .image-text p {
-        font-size: 1rem;
-    }
-
-    /* Thumbnails tilpasning */
-    .thumbnails {
-        padding: 15px;
-        gap: 10px;
-    }
-
-    .thumb {
-        width: 90px;  /* Lidt mindre thumbnails */
-        height: 60px;
-    }
+    transform: scale(1.1);
+    color: var(--pink);
 }

@@ -2,83 +2,129 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Place - Barselstilbud</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Londrina+Solid:wght@100;300;400;900&family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our place</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="spildata.css"/>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="spildata.css"> </head>
 <body>
 
-<header class="site-header">
-  <div class="container header-row">
-    <div class="logo-wrap">
-      <a href="index.html">
+<header class="site-header sticky-top">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
         <img src="images/Logo.png" alt="Our Place logo" class="logo-img">
       </a>
-    </div>
 
-    <nav class="main-nav" aria-label="Hovednavigation">
-      <a href="https://www.ourplacebraetspilscafe.dk/vorescafe/" target="_blank" rel="noopener noreferrer">Vores Brætspils Café</a>
-      <a href="https://www.ourplacebraetspilscafe.dk/privateevents/" target="_blank" rel="noopener noreferrer">Private ARRANGEMENT</a>
-      <a href="games.html">Vores Spil</a>
-      <a href="https://www.ourplacebraetspilscafe.dk/kontakt/" target="_blank" rel="noopener noreferrer">Kontakt</a>
-    </nav>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <a class="book-btn book-button" href="https://www.ourplacebraetspilscafe.dk/kontakt/" role="button" target="_blank" rel="noopener noreferrer">Book Bord</a>
-  </div>
-</header>
-
-
-  <main class="containergallery">
-    <h1 class="under">Voksenfællesskab med babyer Hos Our Place</h1>
-
-    <div class="gallery-wrapper">
-      <div class="main-display">
-        <img id="main-img" src="images/barnevogn.jpg" alt="Barnevogn parkering">
-
-        <div class="image-text">
-          <h2 id="main-title">Plads til barnevognen</h2>
-          <p id="main-desc">Hos Our Place ved vi, at logistikken skal gå op. Vi har plads til barnevognen lige udenfor vinduet eller i gården, så du trygt kan spille videre, mens den lille sover.</p>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <div class="navbar-nav text-center gap-3 my-3 my-lg-0">
+          <a class="nav-link" href="https://www.ourplacebraetspilscafe.dk/vorescafe/" target="_blank">Vores Café</a>
+          <a class="nav-link" href="https://www.ourplacebraetspilscafe.dk/privateevents/" target="_blank">Arrangementer</a>
+          <a class="nav-link" href="games.html">Vores Spil</a>
+          <a class="nav-link" href="https://www.ourplacebraetspilscafe.dk/kontakt/" target="_blank">Kontakt</a>
         </div>
       </div>
 
-      <div class="thumbnails">
-        <img class="thumb active"
-             src="images/Plakat%20nr%201%20-%20Kopi.png"
-             alt="Barnevogn parkering"
-             data-title="Plads til barnevognen"
-             data-description="Hos Our Place ved vi, at logistikken skal gå op. Vi har plads til barnevognen lige udenfor vinduet eller i gården, så du trygt kan spille videre, mens den lille sover.">
-
-        <img class="thumb"
-             src="images/Plakat%20nr%202%20-%20Kopi.png"
-             alt="Amning og kaffe"
-             data-title="Kaffe og amning"
-             data-description="Der er ingen stress her. Du kan amme eller give flaske præcis hvor du vil. Vi sørger for varm kaffe (eller iskaffe) og lækre snacks, så du får lidt luksus i hverdagen.">
-
-        <img class="thumb"
-             src="images/Plakat%20nr%203%20-%20Kopi.png"
-             alt="Puslebord faciliteter"
-             data-title="Gode pusleforhold"
-             data-description="Vi har sørget for et ordentligt puslebord med plads og ro. Det skal være nemt at have baby med i byen, uden at man skal improvisere på et koldt toiletgulv.">
-
-        <img class="thumb"
-             src="images/Plakat%20nr%204%20-%20Kopi.png"
-             alt="Brætspil på bordet"
-             data-title="Spil for enhver smag"
-             data-description="Uanset om du vil spille tunge strategispil eller bare et hurtigt spil Ludo, mens baby leger på gulvet, så har vi spillet til dig.">
+      <div class="d-none d-lg-block">
+        <a class="book-btn" href="https://www.ourplacebraetspilscafe.dk/kontakt/" target="_blank">Book Bord</a>
       </div>
     </div>
-  </main>
+  </nav>
+</header>
 
 
+<main class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
 
-  <script src="galleryjs.js"></script>
-  <script src="spildata.js"></script>
-  <script src="js.js"></script>
+      <h1 class="under text-center mb-4">Voksenfællesskab med babyer Hos Our Place</h1>
+
+      <div class="gallery-wrapper shadow-sm">
+
+        <div class="main-display position-relative">
+          <img id="main-img" src="images/barnevogn.jpg" alt="Barnevogn parkering" class="img-fluid w-100">
+
+          <div class="image-text p-4">
+            <h2 id="main-title">Plads til barnevognen</h2>
+            <p id="main-desc">Hos Our Place ved vi, at logistikken skal gå op. Vi har plads til barnevognen lige udenfor vinduet eller i gården, så du trygt kan spille videre, mens den lille sover.</p>
+          </div>
+        </div>
+
+        <div class="thumbnails d-flex gap-2 p-3 bg-light overflow-auto">
+          <img class="thumb active"
+               src="images/Plakat%20nr%201%20-%20Kopi.png"
+               alt="Barnevogn parkering"
+               data-title="Plads til barnevognen"
+               data-description="Hos Our Place ved vi, at logistikken skal gå op. Vi har plads til barnevognen lige udenfor vinduet eller i gården, så du trygt kan spille videre, mens den lille sover.">
+
+          <img class="thumb"
+               src="images/Plakat%20nr%202%20-%20Kopi.png"
+               alt="Amning og kaffe"
+               data-title="Kaffe og amning"
+               data-description="Der er ingen stress her. Du kan amme eller give flaske præcis hvor du vil. Vi sørger for varm kaffe (eller iskaffe) og lækre snacks, så du får lidt luksus i hverdagen.">
+
+          <img class="thumb"
+               src="images/Plakat%20nr%203%20-%20Kopi.png"
+               alt="Puslebord faciliteter"
+               data-title="Gode pusleforhold"
+               data-description="Vi har sørget for et ordentligt puslebord med plads og ro. Det skal være nemt at have baby med i byen, uden at man skal improvisere på et koldt toiletgulv.">
+
+          <img class="thumb"
+               src="images/Plakat%20nr%204%20-%20Kopi.png"
+               alt="Brætspil på bordet"
+               data-title="Spil for enhver smag"
+               data-description="Uanset om du vil spille tunge strategispil eller bare et hurtigt spil Ludo, mens baby leger på gulvet, så har vi spillet til dig.">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+
+<footer class="site-footer py-4 mt-auto">
+  <div class="container">
+    <div class="row gy-4 text-center text-md-start align-items-center">
+
+      <div class="col-12 col-md-4 d-flex flex-column align-items-center align-items-md-start">
+        <div class="fw-bold">Åbningstider:</div>
+        <div>Fredag: kl. 15:00 - 18:00</div>
+        <div>Lørdag: kl. 13:00 - 18:00</div>
+      </div>
+
+      <div class="col-12 col-md-4 text-center">
+        <div class="footer-brand mb-1">Our Place</div>
+        <div>Munke bro 1, 4000 Roskilde</div>
+        <div>kontakt@ourplacebraetspilscafe.dk</div>
+      </div>
+
+      <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-end gap-3">
+        <a href="https://www.instagram.com/ourplacebraetspilscafe/" class="social">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61553844893402" class="social">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="galleryjs.js"></script>
+<script src="spildata.js"></script>
+<script src="js.js"></script>
 </body>
-
 </html>
