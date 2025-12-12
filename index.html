@@ -12,10 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Londrina+Solid:wght@100;300;400;900&family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <header class="site-header sticky-top">
     <nav class="navbar navbar-expand-lg">
@@ -30,21 +29,21 @@
 
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <div class="navbar-nav text-center gap-3 my-3 my-lg-0">
-                    <a class="nav-link" href="https://www.ourplacebraetspilscafe.dk/vorescafe/" target="_blank">Vores Café</a>
-                    <a class="nav-link" href="https://www.ourplacebraetspilscafe.dk/privateevents/" target="_blank">Arrangementer</a>
+                    <a class="nav-link" href="underombygning.html">Vores Café</a>
+                    <a class="nav-link" href="underombygning.html">Arrangementer</a>
                     <a class="nav-link" href="games.html">Vores Spil</a>
-                    <a class="nav-link" href="https://www.ourplacebraetspilscafe.dk/kontakt/" target="_blank">Kontakt</a>
+                    <a class="nav-link" href="underombygning.html">Kontakt</a>
                 </div>
             </div>
 
             <div class="d-none d-lg-block">
-                <a class="book-btn" href="https://www.ourplacebraetspilscafe.dk/kontakt/" target="_blank">Book Bord</a>
+                <a class="book-btn" href="underombygning.html">Book Bord</a>
             </div>
         </div>
     </nav>
 </header>
 
-<main class="container my-4">
+<main class="container my-4 flex-grow-1">
     <section class="title-section text-center position-relative mb-5">
         <h1 class="brand">Our Place <span class="dash">-</span></h1>
         <p class="sub">Brætspil Café</p>
@@ -54,28 +53,28 @@
     <section class="features row g-4 mb-5">
 
         <div class="col-6 col-md-6 col-lg-3">
-            <a href="barseltilbud.html" target="_blank" class="card custom-card card-1 h-100">
+            <a href="barseltilbud.html"  class="card custom-card card-1 h-100">
                 <img class="pawn-img" src="images/pink%20brik%20-%20Kopi.png" alt="brik">
                 <h3>Barsels<br>Tilbud</h3>
             </a>
         </div>
 
         <div class="col-6 col-md-6 col-lg-3">
-            <a href="https://www.ourplacebraetspilscafe.dk/privateevents/" target="_blank" class="card custom-card card-2 h-100">
+            <a href="underombygning.html" class="card custom-card card-2 h-100">
                 <img class="pawn-img" src="images/blå%20brik%20-%20Kopi.png" alt="brik">
                 <h3>Afhold<br>Event</h3>
             </a>
         </div>
 
         <div class="col-6 col-md-6 col-lg-3">
-            <a href="#" target="_blank" class="card custom-card card-3 h-100">
+            <a href="games.html"class="card custom-card card-3 h-100">
                 <img class="pawn-img" src="images/tyrkis%20brik%20-%20Kopi.png" alt="brik">
                 <h3>Alle vores<br>spil</h3>
             </a>
         </div>
 
         <div class="col-6 col-md-6 col-lg-3">
-            <a href="https://www.ourplacebraetspilscafe.dk/kontakt/" target="_blank" class="card custom-card card-4 h-100">
+            <a href="underombygning.html"class="card custom-card card-4 h-100">
                 <img class="pawn-img" src="images/gul%20brik%20-%20Kopi.png" alt="brik">
                 <h3>Kontakt &amp;<br>Book</h3>
             </a>
@@ -94,14 +93,18 @@
 
             <p class="h4 mb-3" style="font-family: var(--nav-font);">Find det helt rigtige spil.</p>
 
-            <div class="search-controls mw-100 mx-auto" style="max-width: 800px;">
-                <input type="text" id="searchBar" class="form-control form-control-lg mb-3" placeholder="Søg efter titel (fx Ludo)...">
+            <div class="row justify-content-center mb-5">
+                <div class="col-12 col-md-8 col-lg-6">
 
-                <div class="filter-buttons d-flex flex-wrap gap-2 justify-content-center">
-                    <button class="filter-btn active" data-category="alle">Alle</button>
-                    <button class="filter-btn" data-category="Strategi">Strategi</button>
-                    <button class="filter-btn" data-category="Hurtigt">Hurtigt (Baby-venligt)</button>
-                    <button class="filter-btn" data-category="Klassiker">Klassikere</button>
+                    <input type="text" id="searchBar" class="form-control form-control-lg text-center mb-3" placeholder="Søg efter titel (fx Ludo)...">
+
+                    <div class="filter-buttons d-flex flex-wrap justify-content-center gap-2">
+                        <button class="filter-btn active" data-category="alle">Alle</button>
+                        <button class="filter-btn" data-category="Strategi">Strategi</button>
+                        <button class="filter-btn" data-category="Hurtigt">Hurtigt (Baby-venligt)</button>
+                        <button class="filter-btn" data-category="Klassiker">Klassikere</button>
+                    </div>
+
                 </div>
             </div>
 

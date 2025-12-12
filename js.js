@@ -1,119 +1,111 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    let currentCategory = 'alle';
+    // --- DEL 1: SPIL LOGIK (Kører kun hvis der er en container) ---
     const container = document.getElementById('gameContainer');
     const searchInput = document.getElementById('searchBar');
     const filterButtons = document.querySelectorAll('.filter-btn');
+    let currentCategory = 'alle';
 
-    // NYT: Vi tjekker, om HTML-containeren har "data-show-all" sat til true
-    // (Det skal den have på undersiden "Vores Spil", men IKKE på forsiden)
-    const showAllByDefault = container && container.dataset.showAll === "true";
+    // Tjek om vi er på en side med spil-containeren
+    if (container) {
 
-    // --- 2. FUNKTION: Tegn spillene ---
-    function renderGames(list) {
-        container.innerHTML = ''; // Ryd først
+        // Skal vi vise alle spil med det samme? (Tjekker data-show-all attributten i HTML)
+        const showAllByDefault = container.dataset.showAll === "true";
 
-        if(list.length === 0) {
-            // Vis kun fejlbesked, hvis brugeren faktisk har søgt (for at undgå den vises ved start på forsiden)
-            if (searchInput.value !== '') {
-                container.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">Ingen spil fundet...</p>';
+        // Funktion til at tegne spillene
+        function renderGames(list) {
+            container.innerHTML = ''; // Ryd først
+
+            if(list.length === 0) {
+                if (searchInput.value !== '') {
+                    container.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">Ingen spil fundet...</p>';
+                }
+                return;
             }
-            return;
-        }
 
-        list.forEach(game => {
-            // DINE FARVER
-            let tagColor = '#89d0f0'; // Default blå
-            if(game.category === 'Hurtigt') tagColor = '#ffd686'; // Gul
-            if(game.category === 'Strategi') tagColor = '#ff94c4'; // Lyserød
-            if(game.category === 'Quiz') tagColor = '#79D9C7';    // Turkis
+            list.forEach(game => {
+                let tagColor = '#89d0f0'; // Default blå
+                if(game.category === 'Hurtigt') tagColor = '#ffd686';
+                if(game.category === 'Strategi') tagColor = '#ff94c4';
+                if(game.category === 'Quiz') tagColor = '#79D9C7';
 
-            const html = `
-                <div class="game-card">
-                    <h3 class="game-title">${game.title}</h3>
-                    <div class="game-info">👥 ${game.players} • ⏱ ${game.time}</div>
-                    <p class="game-desc">${game.desc}</p>
-                    <span class="game-tag" style="background-color: ${tagColor}">${game.category}</span>
-                </div>
-            `;
-            container.innerHTML += html;
-        });
-    }
-
-    // --- 3. FUNKTION: Filtrerings-logik ---
-    function filterGames() {
-        const searchText = searchInput.value.toLowerCase();
-
-        // NYT: Hvis søgefeltet er tomt, ingen kategori er valgt,
-        // OG vi er på forsiden (!showAllByDefault) -> Skjul alt
-        if (searchText === '' && currentCategory === 'alle' && !showAllByDefault) {
-            container.innerHTML = ''; // Tømmer listen
-            return;
-        }
-
-        const filtered = gamesData.filter(game => {
-            const matchCategory = (currentCategory === 'alle') || (game.category === currentCategory);
-            const matchSearch = game.title.toLowerCase().includes(searchText) ||
-                game.desc.toLowerCase().includes(searchText);
-            return matchCategory && matchSearch;
-        });
-
-        renderGames(filtered);
-    }
-
-    // --- 4. EVENTS: Her "lytter" vi efter input ---
-
-    if (searchInput) {
-        searchInput.addEventListener('keyup', filterGames);
-    }
-
-    if (filterButtons) {
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                currentCategory = btn.dataset.category;
-
-                filterButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                filterGames();
+                const html = `
+                    <div class="game-card h-100">
+                        <h3 class="game-title">${game.title}</h3>
+                        <div class="game-info mb-2 text-muted">👥 ${game.players} • ⏱ ${game.time}</div>
+                        <p class="game-desc">${game.desc}</p>
+                        <span class="game-tag" style="background-color: ${tagColor}">${game.category}</span>
+                    </div>
+                `;
+                container.innerHTML += html;
             });
-        });
+        }
+
+        // Funktion til filtrering
+        function filterGames() {
+            const searchText = searchInput ? searchInput.value.toLowerCase() : '';
+
+            // Hvis søgefeltet er tomt, ingen kategori valgt, OG vi er på forside -> Skjul
+            if (searchText === '' && currentCategory === 'alle' && !showAllByDefault) {
+                container.innerHTML = '';
+                return;
+            }
+
+            // Filtrer listen (gamesData skal komme fra spildata.js)
+            const filtered = gamesData.filter(game => {
+                const matchCategory = (currentCategory === 'alle') || (game.category === currentCategory);
+                const matchSearch = game.title.toLowerCase().includes(searchText) ||
+                    game.desc.toLowerCase().includes(searchText);
+                return matchCategory && matchSearch;
+            });
+
+            renderGames(filtered);
+        }
+
+        // Event Listeners
+        if (searchInput) {
+            searchInput.addEventListener('keyup', filterGames);
+        }
+
+        if (filterButtons) {
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentCategory = btn.dataset.category;
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    filterGames();
+                });
+            });
+        }
+
+        // Initiering ved start
+        if (showAllByDefault) {
+            renderGames(gamesData);
+        } else {
+            container.innerHTML = ''; // Start tom på forsiden
+        }
     }
 
-    // --- 5. START LOGIK ---
-    // Hvis vi er på "Vores Spil" siden (data-show-all="true") -> Vis alt
-    // Hvis vi er på Forsiden -> Gør ingenting (tom liste)
-    if (showAllByDefault) {
-        renderGames(gamesData);
-    } else {
-        container.innerHTML = '';
-    }
+    // --- DEL 2: MENU MODAL (Kører kun hvis elementerne findes) ---
+    const modal = document.getElementById("menuModal");
+    const openBtn = document.getElementById("openMenuBtn");
+    const closeBtn = document.querySelector(".close-btn");
 
+    if (modal && openBtn) {
+        openBtn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        if (closeBtn) {
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
 });
-// --- 6. MENU MODAL LOGIK ---
-
-// Hent elementerne
-const modal = document.getElementById("menuModal");
-const btn = document.getElementById("openMenuBtn");
-const span = document.getElementsByClassName("close-btn")[0];
-
-// Når man klikker på MENU knappen, åben modalen
-if (btn) {
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-}
-
-// Når man klikker på X (span), luk modalen
-if (span) {
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-}
-
-// Når man klikker udenfor billedet (på den mørke baggrund), luk modalen
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}

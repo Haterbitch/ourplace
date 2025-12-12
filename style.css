@@ -1,4 +1,5 @@
-:root{
+/* --- GLOBALE VARIABLER --- */
+:root {
     --max-width: 1200px;
     --mint: #79D9C7;
     --pink: #FF94C4;
@@ -13,6 +14,7 @@
     --body-font: "Inter", system-ui, sans-serif;
 }
 
+/* --- BASIS STYLING --- */
 body {
     background: var(--bg);
     color: var(--text);
@@ -20,7 +22,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* --- TEXT STYLING --- */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--heading-font);
 }
@@ -30,7 +31,7 @@ a {
     color: #000;
 }
 
-/* --- BOOTSTRAP NAVBAR OVERRIDES --- */
+/* --- HEADER & NAVIGATION (Bootstrap Overrides) --- */
 .site-header {
     background: var(--mint);
     box-shadow: 0 2px 0 rgba(0,0,0,0.04);
@@ -51,13 +52,6 @@ a {
     margin: 0 10px;
 }
 
-.navbar-toggler {
-    border: none;
-}
-.navbar-toggler:focus {
-    box-shadow: none;
-}
-
 .book-btn {
     background: var(--pink);
     color: #000000;
@@ -68,14 +62,17 @@ a {
     box-shadow: 0 2px 0 rgba(0,0,0,0.06);
     white-space: nowrap;
     display: inline-block;
+    transition: transform 0.2s;
+}
+.book-btn:hover {
+    transform: scale(1.05);
 }
 
-/* --- TITLE SECTION --- */
+/* --- FORSIDE: TITEL & KORT --- */
 .brand {
-    font-size: 4rem; /* Lidt mindre på mobil default */
+    font-size: 4rem;
     letter-spacing: -2px;
 }
-/* Større på desktop */
 @media (min-width: 768px) {
     .brand { font-size: 7rem; }
 }
@@ -108,11 +105,10 @@ a {
     transform: scale(1.05) rotate(-2deg);
 }
 
-
-/* --- CUSTOM CARDS (Bootstrap Columns holder dem nu) --- */
+/* --- FORSIDE: FEATURE KORT --- */
 .custom-card {
     position: relative;
-    overflow: visible; /* Vigtigt for brikkerne der stikker op */
+    overflow: visible;
     border-radius: 14px;
     padding: 24px 12px;
     text-align: center;
@@ -122,8 +118,10 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: none; /* Fjern bootstrap card border */
+    border: none;
     transition: transform 0.2s;
+    height: 100%; /* Sikrer ens højde i grid */
+    color: #000; /* Sikrer sort tekst */
 }
 
 .custom-card:hover {
@@ -155,86 +153,40 @@ a {
 }
 @media (min-width: 992px) { .pawn-img { width: 72px; } }
 
-/* --- PROMO & GAME SEARCH --- */
-.promo-inner {
-    background: #fff;
-    padding: 15px 20px;
-    border-radius: 12px;
-    border: 4px solid var(--mint);
-    box-shadow: 0 6px 16px var(--pink);
-    font-family: var(--heading-font);
-    font-weight: 700;
-    font-size: 24px;
-    text-align: center;
-    display: inline-block;
-}
-@media (min-width: 768px) {
-    .promo-inner { font-size: 40px; padding: 24px 36px; }
-}
-
-/* Søge knapper */
-.filter-btn {
-    background: #fff;
-    border: 2px solid #ddd;
-    border-radius: 20px;
-    padding: 8px 16px;
-    font-family: var(--nav-font);
-    cursor: pointer;
-    transition: 0.2s;
-}
-.filter-btn:hover, .filter-btn.active {
-    background: var(--soft-blue);
-    border-color: var(--soft-blue);
-    color: #fff;
-}
-
-/* Spil Grid Container til JS */
-.game-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-}
-.game-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    text-align: left;
-}
-.game-tag {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-/* --- MENU BUTTON --- */
+/* --- FORSIDE: MENU MODAL & KNAP --- */
 .menuknap {
     font-family: var(--heading-font);
     font-weight: 900;
-    font-size: 60px;
-    line-height: 0.8;
+    font-size: 60px; /* Mobil */
+    line-height: 1;
     color: var(--mint);
     background: transparent;
-    border: none;
+    border: none; /* Fjerner standard knap-kant */
     cursor: pointer;
-    text-shadow: 4px 4px 0px #FF85C1;
+    text-shadow: 4px 4px 0px #FF85C1; /* Lyserød skygge */
     transition: transform 0.2s;
     max-width: 100%;
+    margin-top: 20px;
+    display: inline-block; /* Sikrer at transform virker */
 }
-@media (min-width: 768px) { .menuknap { font-size: 100px; text-shadow: 6px 6px 0px #FF85C1; } }
+
+@media (min-width: 768px) {
+    .menuknap {
+        font-size: 100px;
+        text-shadow: 6px 6px 0px #FF85C1;
+    }
+}
 
 .menuknap:hover {
     transform: scale(1.05) rotate(-2deg);
+    text-decoration: none; /* Sikrer ingen understregning fra Bootstrap */
 }
 
-/* --- CUSTOM MODAL (Beholdt da den var specifik) --- */
+/* Modal styling */
 .custom-modal {
     display: none;
     position: fixed;
-    z-index: 2000; /* Højere end bootstrap navbar */
+    z-index: 2000;
     left: 0;
     top: 0;
     width: 100%;
@@ -277,6 +229,175 @@ a {
 @keyframes zoom {
     from {transform:scale(0)}
     to {transform:scale(1)}
+}
+
+/* --- SPIL-SIDE: PROMO BOKS --- */
+.promo-inner {
+    background: #fff;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 4px solid var(--mint); /* Grøn kant */
+    box-shadow: 0 6px 16px var(--pink); /* Lyserød skygge */
+    font-family: var(--heading-font);
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+    display: inline-block;
+}
+@media (min-width: 768px) {
+    .promo-inner { font-size: 40px; padding: 24px 36px; }
+}
+
+/* --- SØGEFELT (DESIGNET SOM BILLEDE 2) --- */
+#searchBar {
+    border: 4px solid var(--mint) !important; /* Tyk grøn kant */
+    border-radius: 12px !important;
+    padding: 12px 20px !important;
+    box-shadow: 0 0 20px -5px var(--pink) !important; /* Lyserød glød/skygge */
+    font-family: var(--nav-font);
+    font-size: 1.1rem;
+    color: #333;
+}
+
+#searchBar:focus {
+    box-shadow: 0 0 25px -2px var(--pink) !important;
+    outline: none !important;
+}
+
+/* --- FILTER KNAPPER (DESIGNET SOM BILLEDE 2 & 3) --- */
+.filter-btn {
+    background-color: #fff;
+    border: 2px solid var(--mint) !important;
+    border-radius: 50px !important;
+    padding: 8px 20px;
+    font-family: var(--nav-font);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    color: #000;
+    margin: 5px; /* Lidt luft omkring */
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1); /* Lille skygge under knap */
+}
+
+.filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 rgba(0,0,0,0.1);
+    background-color: var(--mustard) !important;
+    border-color: var(--mint) !important;
+    color: #000 !important;
+}
+
+/* Specifik styling for "Alle" knappen (Blå) */
+.filter-btn[data-category="alle"].active
+{
+    background-color: var(--soft-blue) !important;
+    border-color: var(--soft-blue) !important;
+    color: #fff !important;
+}
+.filter-btn[data-category="alle"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 rgba(0,0,0,0.1);
+    background-color: var(--mustard) !important;
+    border-color: var(--mint) !important;
+    color: #000 !important;
+}
+
+/* --- SPIL KORT --- */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+.game-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: left;
+}
+.game-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* --- GALLERI: BARSELSTILBUD --- */
+.gallery-wrapper {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-display {
+    background: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+}
+
+#main-img {
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+.image-text {
+    background: white;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.image-text h2 {
+    color: var(--mint);
+    margin-bottom: 10px;
+}
+
+.image-text p {
+    color: #555;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Scrollbar til thumbnails */
+.thumbnails {
+    cursor: grab;
+    scrollbar-width: thin;
+}
+
+.thumb {
+    width: 100px;
+    height: 70px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.2s ease;
+    border: 3px solid transparent;
+}
+
+.thumb:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.thumb.active {
+    opacity: 1;
+    border-color: var(--pink);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 768px) {
+    #main-img { height: 250px; }
+    .thumb { width: 80px; height: 60px; }
 }
 
 /* --- FOOTER --- */

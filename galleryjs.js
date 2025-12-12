@@ -1,26 +1,42 @@
-// 1. Find elementerne
-const mainImg = document.getElementById('main-img');
-const mainTitle = document.getElementById('main-title');
-const mainDesc = document.getElementById('main-desc');
-const thumbnails = document.querySelectorAll('.thumb');
+document.addEventListener('DOMContentLoaded', () => {
+    const mainImg = document.getElementById('main-img');
+    const mainTitle = document.getElementById('main-title');
+    const mainDesc = document.getElementById('main-desc');
+    const thumbnails = document.querySelectorAll('.thumb');
 
-// 2. Sæt "lytte-bøffer" på alle billederne
-thumbnails.forEach(thumb => {
-    thumb.addEventListener('click', function() {
+    // Sikkerhedscheck
+    if (!mainImg) return;
 
-        // Opdater billede og tekst
-        mainImg.src = this.src;
-        mainImg.alt = this.alt;
-        mainTitle.textContent = this.getAttribute('data-title');
-        mainDesc.textContent = this.getAttribute('data-description');
-
-        // Flyt den aktive ramme
+    // Funktion til at opdatere billedet
+    function updateMainImage(thumb) {
+        // 1. Visuel opdatering af thumbnails
         thumbnails.forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
+        thumb.classList.add('active');
 
+        // 2. Skift indhold med animation
+        mainImg.style.opacity = 0;
+
+        setTimeout(() => {
+            mainImg.src = thumb.src;
+            if(mainTitle) mainTitle.innerText = thumb.dataset.title;
+            if(mainDesc) mainDesc.innerText = thumb.dataset.description;
+            mainImg.style.opacity = 1;
+        }, 200);
+    }
+
+    // Event listeners på klik
+    thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            updateMainImage(this);
+        });
     });
-});
 
-// NY LINJE HERUNDER:
-// Vi "klikker" automatisk på det første billede (indeks 0), når siden starter
-thumbnails[0].click();
+    // START FIX: Find den thumbnail der har 'active' class fra start, eller tag den første
+    const startThumb = document.querySelector('.thumb.active') || thumbnails[0];
+    if (startThumb) {
+        // Sæt startbilledet uden animation første gang
+        mainImg.src = startThumb.src;
+        if(mainTitle) mainTitle.innerText = startThumb.dataset.title;
+        if(mainDesc) mainDesc.innerText = startThumb.dataset.description;
+    }
+});
