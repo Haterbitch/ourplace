@@ -1,4 +1,4 @@
-/* --- GLOBALE VARIABLER --- */
+/* ----HER STARTER GLOBALE INDSTILLINGER & VARIABLER--- */
 :root {
     --max-width: 1200px;
     --mint: #79D9C7;
@@ -14,7 +14,6 @@
     --body-font: "Inter", system-ui, sans-serif;
 }
 
-/* --- BASIS STYLING --- */
 body {
     background: var(--bg);
     color: var(--text);
@@ -30,8 +29,10 @@ a {
     text-decoration: none;
     color: #000;
 }
+/* ---HER SLUTTER GLOBALE INDSTILLINGER & VARIABLER--- */
 
-/* --- HEADER & NAVIGATION (Bootstrap Overrides) --- */
+
+/* ----HER STARTER HEADER & NAVIGATION--- */
 .site-header {
     background: var(--mint);
     box-shadow: 0 2px 0 rgba(0,0,0,0.04);
@@ -42,6 +43,7 @@ a {
     border-radius: 8px;
 }
 
+/* Tilpasning af Bootstraps nav-links */
 .navbar-nav .nav-link {
     font-family: var(--nav-font);
     color: #000000 !important;
@@ -52,6 +54,7 @@ a {
     margin: 0 10px;
 }
 
+/* Book Bord knappen */
 .book-btn {
     background: var(--pink);
     color: #000000;
@@ -64,17 +67,21 @@ a {
     display: inline-block;
     transition: transform 0.2s;
 }
+
 .book-btn:hover {
     transform: scale(1.05);
 }
+/* ---HER SLUTTER HEADER & NAVIGATION--- */
 
-/* --- FORSIDE: TITEL & KORT --- */
+
+/* ----HER STARTER FORSIDE (TITEL & KORT)--- */
 .brand {
-    font-size: 4rem;
+    font-size: 4rem; /* Mobil størrelse */
     letter-spacing: -2px;
 }
+
 @media (min-width: 768px) {
-    .brand { font-size: 7rem; }
+    .brand { font-size: 7rem; /* Desktop størrelse */ }
 }
 
 .dash {
@@ -88,8 +95,12 @@ a {
     font-size: 24px;
     color: #444;
 }
-@media (min-width: 768px) { .sub { font-size: 30px; } }
 
+@media (min-width: 768px) {
+    .sub { font-size: 30px; }
+}
+
+/* Det roterende kort ved titlen */
 .tilt-card {
     position: absolute;
     right: 10%;
@@ -98,14 +109,16 @@ a {
     transform: rotate(12deg);
     transition: transform 0.2s;
 }
+
 @media (min-width: 992px) {
     .tilt-card { width: 140px; right: 8%; }
 }
+
 .tilt-card:hover {
     transform: scale(1.05) rotate(-2deg);
 }
 
-/* --- FORSIDE: FEATURE KORT --- */
+/* Feature Kort (De 4 farvede bokse) */
 .custom-card {
     position: relative;
     overflow: visible;
@@ -120,14 +133,14 @@ a {
     justify-content: center;
     border: none;
     transition: transform 0.2s;
-    height: 100%; /* Sikrer ens højde i grid */
-    color: #000; /* Sikrer sort tekst */
+    color: #000;
 }
 
 .custom-card:hover {
     transform: translateY(-5px);
 }
 
+/* Farver til kortene */
 .card-1 { background:#FFD686; }
 .card-2 { background:#79D9C7; }
 .card-3 { background:#89D0F0; }
@@ -151,23 +164,28 @@ a {
     pointer-events: none;
     filter: drop-shadow(0 8px 6px rgba(0,0,0,0.12));
 }
-@media (min-width: 992px) { .pawn-img { width: 72px; } }
 
-/* --- FORSIDE: MENU MODAL & KNAP --- */
+@media (min-width: 992px) {
+    .pawn-img { width: 72px; }
+}
+/* ---HER SLUTTER FORSIDE (TITEL & KORT)--- */
+
+
+/* ----HER STARTER MENU KNAP & MODAL--- */
 .menuknap {
     font-family: var(--heading-font);
     font-weight: 900;
-    font-size: 60px; /* Mobil */
+    font-size: 60px;
     line-height: 1;
     color: var(--mint);
     background: transparent;
-    border: none; /* Fjerner standard knap-kant */
+    border: none;
     cursor: pointer;
-    text-shadow: 4px 4px 0px #FF85C1; /* Lyserød skygge */
+    text-shadow: 4px 4px 0px #FF85C1;
     transition: transform 0.2s;
     max-width: 100%;
     margin-top: 20px;
-    display: inline-block; /* Sikrer at transform virker */
+    display: inline-block;
 }
 
 @media (min-width: 768px) {
@@ -179,10 +197,10 @@ a {
 
 .menuknap:hover {
     transform: scale(1.05) rotate(-2deg);
-    text-decoration: none; /* Sikrer ingen understregning fra Bootstrap */
+    text-decoration: none;
 }
 
-/* Modal styling */
+/* Modal (Popup vindue) */
 .custom-modal {
     display: none;
     position: fixed;
@@ -224,33 +242,149 @@ a {
     cursor: pointer;
     z-index: 2001;
 }
+
 .close-btn:hover { color: var(--pink); }
 
 @keyframes zoom {
     from {transform:scale(0)}
     to {transform:scale(1)}
 }
+/* ---HER SLUTTER MENU KNAP & MODAL--- */
 
-/* --- SPIL-SIDE: PROMO BOKS --- */
+
+/* ----HER STARTER SPILBIBLIOTEK (SØGNING, FILTRE & GRID)--- */
+/* Promo boksen */
 .promo-inner {
     background: #fff;
     padding: 15px 20px;
     border-radius: 12px;
-    border: 4px solid var(--mint); /* Grøn kant */
-    box-shadow: 0 6px 16px var(--pink); /* Lyserød skygge */
+    border: 4px solid var(--mint);
+    box-shadow: 0 6px 16px var(--pink);
     font-family: var(--heading-font);
     font-weight: 700;
     font-size: 24px;
     text-align: center;
     display: inline-block;
 }
+
 @media (min-width: 768px) {
     .promo-inner { font-size: 40px; padding: 24px 36px; }
 }
 
+/* Søgefelt */
+#searchBar {
+    border: 4px solid var(--mint) !important;
+    border-radius: 12px !important;
+    padding: 12px 20px !important;
+    box-shadow: 0 0 20px -5px var(--pink) !important;
+    font-family: var(--nav-font);
+    font-size: 1.1rem;
+    color: #333;
+}
+
+#searchBar:focus {
+    box-shadow: 0 0 25px -2px var(--pink) !important;
+    outline: none !important;
+}
+
+/* Filter Knapper */
+.filter-btn {
+    background-color: #fff;
+    border: 2px solid var(--mint) !important;
+    border-radius: 50px !important;
+    padding: 8px 20px;
+    font-family: var(--nav-font);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    color: #000;
+    margin: 5px;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 rgba(0,0,0,0.1);
+    color: #000;
+}
+
+/* Specifik farve styling til knapperne */
+.filter-btn[data-category="alle"].active,
+.filter-btn.active[href="games.html"] {
+    background-color: var(--soft-blue) !important;
+    border-color: var(--soft-blue) !important;
+    color: #fff !important;
+}
+
+.filter-btn[data-category="Strategi"].active,
+.filter-btn[data-category="Strategi"]:hover {
+    background-color: var(--mustard) !important;
+    border-color: var(--mustard) !important;
+    color: #000 !important;
+}
+
+/* Standard aktiv state for andre knapper */
+.filter-btn.active {
+    background-color: var(--mint);
+    color: #fff;
+    box-shadow: inset 0 3px 5px rgba(0,0,0,0.1);
+    transform: translateY(2px);
+}
+
+/* Spil Grid & Kort */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.game-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-title {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.game-info {
+    font-family: var(--nav-font);
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.game-desc {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Skubber tags ned i bunden */
+}
+
+.game-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    align-self: flex-start;
+}
+/* ---HER SLUTTER SPILBIBLIOTEK (SØGNING, FILTRE & GRID)--- */
 
 
-/* --- GALLERI: BARSELSTILBUD --- */
+/* ----HER STARTER GALLERI (BARSELSTILBUD)--- */
 .gallery-wrapper {
     background: white;
     border-radius: 20px;
@@ -270,7 +404,7 @@ a {
 #main-img {
     width: 100%;
     height: 400px;
-    object-fit: contain;
+    object-fit: contain; /* Viser hele billedet */
     display: block;
     transition: opacity 0.3s ease;
 }
@@ -291,7 +425,6 @@ a {
     margin: 0;
 }
 
-/* Scrollbar til thumbnails */
 .thumbnails {
     cursor: grab;
     scrollbar-width: thin;
@@ -325,8 +458,10 @@ a {
     #main-img { height: 250px; }
     .thumb { width: 80px; height: 60px; }
 }
+/* ---HER SLUTTER GALLERI (BARSELSTILBUD)--- */
 
-/* --- FOOTER --- */
+
+/* ----HER STARTER FOOTER--- */
 .site-footer {
     background: #bfeeea;
     border-top-left-radius: 6px;
@@ -334,16 +469,20 @@ a {
     font-family: var(--nav-font);
     font-size: 0.95rem;
 }
+
 .footer-brand {
     font-weight: 800;
     font-size: 1.2rem;
 }
+
 .social {
     color: #000;
     font-size: 1.8rem;
     transition: transform 0.2s, color 0.2s;
 }
+
 .social:hover {
     transform: scale(1.1);
     color: var(--pink);
 }
+/* ---HER SLUTTER FOOTER--- */

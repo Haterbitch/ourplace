@@ -12,15 +12,21 @@
 
 /* Søgefelt */
 /* --- SØGEFELT (DESIGNET SOM BILLEDE 2) --- */
+/* Renset #searchBar */
 #searchBar {
-    border: 4px solid var(--mint) !important; /* Tyk grøn kant */
-    border-radius: 12px !important;
-    padding: 12px 20px !important;
-    box-shadow: 0 0 20px -5px var(--pink) !important; /* Lyserød glød/skygge */
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    border: 4px solid var(--mint); /* brug CSS-variabel fra style.css */
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(255,148,196,0.25);
+    outline: none;
     font-family: var(--nav-font);
-    font-size: 1.1rem;
     color: #333;
 }
+
 
 #searchBar:focus {
     box-shadow: 0 0 25px -2px var(--pink) !important;
